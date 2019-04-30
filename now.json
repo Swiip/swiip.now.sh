@@ -13,7 +13,7 @@
     { "src": "/(?!api)(.+)", "dest": "/packages/client/$1" }
   ],
   "builds": [
-    { "src": "packages/server/**", "use": "@now/node" },
+    { "src": "packages/server/index.js", "use": "@now/node" },
     { "src": "packages/client/**", "use": "@now/static" }
   ]
 }
