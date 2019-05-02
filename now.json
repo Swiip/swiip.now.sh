@@ -14,6 +14,6 @@
   ],
   "builds": [
     { "src": "packages/server/index.js", "use": "@now/node" },
-    { "src": "packages/client/**", "use": "@now/static" }
+    { "src": "packages/client/package.json", "use": "@now/static-build" }
   ]
 }
