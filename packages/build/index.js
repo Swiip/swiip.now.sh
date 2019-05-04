@@ -47,8 +47,6 @@ const copyFrontVendor = async () => {
   console.log("Copying front libs to client imports dir...");
   const clientPackageString = await readFile(clientPackagePath);
   const clientPackage = JSON.parse(clientPackageString);
-  // const importsNames = Object.keys(clientPackage.imports);
-  // console.log("importsNames", importsNames);
   await ensureDir(clientImportsPath);
   const copies = Object.keys(clientPackage.imports).map(importKey =>
     copyOneVendor(importKey, clientPackage.imports)

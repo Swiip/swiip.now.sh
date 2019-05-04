@@ -7,9 +7,17 @@ const Header = style("header")({
 });
 
 const Title = style("h1")({
+  flex: "1",
+  ":hover button": {
+    textShadow: "0px 0px 4px white"
+  }
+});
+
+const TitleButton = style("button")({
+  fontSize: "40px",
   fontWeight: "normal",
   whiteSpace: "nowrap",
-  flex: "1"
+  transition: "text-shadow .3s"
 });
 
 const Nav = style("nav")({
@@ -28,9 +36,7 @@ const NavItems = style("ul")({
   justifyContent: "space-around"
 });
 
-const NavButton = style("button")({
-  padding: "20px 30px",
-  lineHeight: "30px",
+const NavItem = style("li")({
   ":after": {
     content: "''",
     display: "block",
@@ -44,16 +50,35 @@ const NavButton = style("button")({
   }
 });
 
-const HeaderComponent = () => html`
+const NavButton = style("button")({
+  padding: "10px 20px",
+  lineHeight: "30px"
+});
+
+const HeaderComponent = ({ setContent }) => html`
   <${Header}>
-    <${Title}>Swiip's home page<//>
+    <${Title}>
+      <${TitleButton} onClick=${() => setContent("home")}>
+        Swiip's home page
+      <//>
+    <//>
     <${Nav}>
       <${NavItems}>
-        <li><${NavButton}>Blog<//></li>
-        <li><${NavButton}>Code<//></li>
-        <li><${NavButton}>Jobs<//></li>
-        <li><${NavButton}>News<//></li>
-        <li><${NavButton}>About<//></li>
+        <${NavItem}>
+          <${NavButton} onClick=${() => setContent("blog")}>Blog<//>
+        <//>
+        <${NavItem}>
+          <${NavButton} onClick=${() => setContent("code")}>Code<//>
+        <//>
+        <${NavItem}>
+          <${NavButton} onClick=${() => setContent("jobs")}>Jobs<//>
+        <//>
+        <${NavItem}>
+          <${NavButton} onClick=${() => setContent("news")}>News<//>
+        <//>
+        <${NavItem}>
+          <${NavButton} onClick=${() => setContent("about")}>About<//>
+        <//>
       <//>
     <//>
   <//>
