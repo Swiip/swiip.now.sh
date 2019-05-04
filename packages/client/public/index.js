@@ -1,3 +1,19 @@
-import { render } from "/vendor/preact/dist/preact.module.js";
+import { render } from "/imports/preact.js";
+import html from "/html.js";
+import Background from "/components/background.js";
 
-console.log("Hello World", render);
+const Other = ({ coucou }) => html`
+  <div>${coucou.foo}</div>
+`;
+
+const App = () => html`
+  <div>HelloWorld</div>
+  <${Other} coucou=${{ foo: "COUCOU" }}><//>
+`;
+
+render(
+  html`
+    <${Background}><${App} /><//>
+  `,
+  document.body
+);

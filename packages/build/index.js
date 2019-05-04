@@ -1,11 +1,11 @@
-const { join } = require("path");
-const { readFile, ensureDir, copy, remove } = require("fs-extra");
+const { resolve, relative, dirname, join } = require("path");
+const { readFile, writeFile, ensureDir, copy, remove } = require("fs-extra");
 
-const clientDistPath = join(__dirname, "../client/dist");
-const clientPublicPath = join(__dirname, "../client/public");
-const clientPackagePath = join(__dirname, "../client/package.json");
-const clientVendorPath = join(__dirname, "../client/dist/vendor");
-const nodeModulesPath = join(__dirname, "../../node_modules");
+const clientDistPath = resolve(__dirname, "../client/dist");
+const clientPublicPath = resolve(__dirname, "../client/public");
+const clientPackagePath = resolve(__dirname, "../client/package.json");
+const clientImportsPath = resolve(__dirname, "../client/dist/imports");
+const rootPath = resolve(__dirname, "../..");
 
 const copyFrontPublic = async () => {
   console.log("Copying front public files to dist...");
@@ -15,14 +15,43 @@ const copyFrontPublic = async () => {
   console.log("Copy ok!");
 };
 
+const importDestPath = importKey =>
+  resolve(clientImportsPath, `${importKey}.js`);
+
+const relativeIportDestPath = importKey =>
+  relative(clientDistPath, importDestPath(importKey));
+
+const copyOneVendor = async (importKey, imports) => {
+  const filePath = join(rootPath, imports[importKey]);
+  let content = (await readFile(filePath)).toString();
+  Object.keys(imports)
+    .filter(key => importKey !== key)
+    .forEach(key => {
+      content = content.replace(
+        new RegExp(`(from\\s*["'])${key}(["'])`),
+        `$1/${relativeIportDestPath(key)}$2`
+      );
+    });
+  const destPath = importDestPath(importKey);
+  await ensureDir(dirname(destPath));
+  console.log(
+    "Copy",
+    imports[importKey],
+    "to",
+    relativeIportDestPath(importKey)
+  );
+  return writeFile(destPath, content);
+};
+
 const copyFrontVendor = async () => {
-  console.log("Copying front libs to client vendor dir...");
+  console.log("Copying front libs to client imports dir...");
   const clientPackageString = await readFile(clientPackagePath);
   const clientPackage = JSON.parse(clientPackageString);
-  const dependencies = Object.keys(clientPackage.dependencies);
-  await ensureDir(clientVendorPath);
-  const copies = dependencies.map(dependency =>
-    copy(join(nodeModulesPath, dependency), join(clientVendorPath, dependency))
+  // const importsNames = Object.keys(clientPackage.imports);
+  // console.log("importsNames", importsNames);
+  await ensureDir(clientImportsPath);
+  const copies = Object.keys(clientPackage.imports).map(importKey =>
+    copyOneVendor(importKey, clientPackage.imports)
   );
   await Promise.all(copies);
   console.log("Copy ok!");

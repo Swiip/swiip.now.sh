@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "import/extensions": ["error", "always"],
+    "import/no-absolute-path": "off",
+    "import/no-unresolved": "off"
+  }
+}

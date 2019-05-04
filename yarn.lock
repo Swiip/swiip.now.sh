@@ -3152,6 +3152,11 @@ hosted-git-info@^2.1.4, hosted-git-info@^2.6.0:
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.7.1.tgz#97f236977bd6e125408930ff6de3eec6281ec047"
   integrity sha512-7T/BxH19zbcCTa8XkMlbK5lTo1WtgkFi3GvdWEyNuc4Vex7/9Dqbnpsf4JMydcfj9HCg4zUWFTL3Za6lapg5/w==
 
+htm@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/htm/-/htm-2.1.1.tgz#5a53e5f2845c3181b1672f95c9bffaf3d621bb0e"
+  integrity sha512-jgvB9nvlOE5xpI1W+juW8DPCe+Pn7mRDNaE4EOQNFqROm0O3l5deOvefK8C8hUaL1OHIX45mDEBSj7BMt+22VQ==
+
 html-encoding-sniffer@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/html-encoding-sniffer/-/html-encoding-sniffer-1.0.2.tgz#e70d84b94da53aa375e11fe3a351be6642ca46f8"
@@ -4853,9 +4858,9 @@ normalize-url@^3.3.0:
   integrity sha512-U+JJi7duF1o+u2pynbp2zXDW2/PADgC30f0GsHZtRh+HOcXHnw137TrNlyxxRvWW5fjKd3bcLHPxofWuCjaeZg==
 
 now@^15.0.11:
-  version "15.0.11"
-  resolved "https://registry.yarnpkg.com/now/-/now-15.0.11.tgz#0c06227d0be16cdc5b388c6bacc6a5297e273956"
-  integrity sha512-ABNSy28mCgz6BQgNQy6ettSI1e0L647xN7fthsMlcA0mienDxPpUpxc8XfprjSdwCLD8kj7Zfp3z7WP33JHBVw==
+  version "15.1.0"
+  resolved "https://registry.yarnpkg.com/now/-/now-15.1.0.tgz#c426ff154bab9541e0b1a002e0a2a1d37ede07fb"
+  integrity sha512-j43YCZvBR2upKjaC7l+po970BMxYK+PuxLlrb9kJ2/YkQ0OtkIgXrkpCmRBOj/h356X7Jfuw2DX45gHfc1rx2w==
 
 npm-bundled@^1.0.1:
   version "1.0.6"
@@ -5360,6 +5365,11 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
+picostyle@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/picostyle/-/picostyle-2.2.0.tgz#c013aff511d0658867b9a445e88baf56b035a8ae"
+  integrity sha512-hkP+80H9dRxXjG3a6/tz3xa7q9imnZM7TAXE+nlbmHo0MbALGOdwwUW1KrSEIN9Dk4nUyxT+vDk/fqBCQh2BCQ==
+
 pify@^2.0.0, pify@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
@@ -5418,10 +5428,10 @@ posix-character-classes@^0.1.0:
   resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
   integrity sha1-AerA/jta9xoqbAL+q7jB/vfgDqs=
 
-preact@^10.0.0-beta.0:
-  version "10.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.0.0-beta.0.tgz#8d53947b167449c09a678fefc2085c0f56ed34bd"
-  integrity sha512-BKd77y7ZpPLybjtM35DJtzXj+sxlAt29MCMGOJnSrsv1jt30aE/wS9qoU9nL8ih+yhal3B22mGAvuh2mGLAFMg==
+preact@^10.0.0-beta.1:
+  version "10.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.0.0-beta.1.tgz#f7d524668db72ed74e99d447f09600fa4db0b186"
+  integrity sha512-1uhj3JXOEzEPUof5t/iQW5heEvTOpexwS0FLAjJQfgfT8OCXICyzI2TwkYyFJ+W9q9GsDmhZgFagH2G0akFveQ==
 
 prelude-ls@~1.1.2:
   version "1.1.2"
