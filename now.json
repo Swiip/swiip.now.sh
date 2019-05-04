@@ -8,7 +8,7 @@
     {
       "src": "/",
       "dest": "/packages/client/index.html",
-      "headers": { "Link": "</index.js>; rel=preload; as=script, </Swiip.jpg>; as=image; rel=preload" }
+      "headers": { "Link": "</index.js>; rel=preload; as=script, </index.css>; as=style; rel=preload" }
     },
     { "src": "/(?!api)(.+)", "dest": "/packages/client/$1" }
   ],

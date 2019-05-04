@@ -1,19 +1,18 @@
 import { render } from "/imports/preact.js";
 import html from "/html.js";
+
 import Background from "/components/background.js";
-
-const Other = ({ coucou }) => html`
-  <div>${coucou.foo}</div>
-`;
-
-const App = () => html`
-  <div>HelloWorld</div>
-  <${Other} coucou=${{ foo: "COUCOU" }}><//>
-`;
+import Header from "/components/header.js";
+import Main from "/components/main.js";
+import Footer from "/components/footer.js";
 
 render(
   html`
-    <${Background}><${App} /><//>
+    <${Background}>
+      <${Header} />
+      <${Main} />
+      <${Footer} />
+    <//>
   `,
   document.body
 );
