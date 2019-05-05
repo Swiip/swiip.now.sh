@@ -1,8 +1,8 @@
 import html from "/html.js";
 import style from "/style.js";
-import { useState } from "/imports/preact/hooks.js";
+import { useState, useRef } from "/imports/preact/hooks.js";
 
-import { cascading, bounceInRight } from "/components/animations.js";
+import { cascading, bounceInRight, spin } from "/components/animations.js";
 
 const CardsContainer = style("article")({
   display: "flex",
@@ -10,6 +10,23 @@ const CardsContainer = style("article")({
   height: "100%",
   overflow: "hidden"
 });
+
+const CardsScroll = style("div")({
+  display: "flex",
+  flexDirection: "row",
+  height: "100%",
+  overflow: "hidden"
+});
+
+const Arrow = style("button")(({ show }) => ({
+  flex: "0 0 80px",
+  fontSize: "50px",
+  transition: "opacity .3s",
+  opacity: show ? "1" : "0",
+  ":hover": {
+    animation: `${spin} 1s`
+  }
+}));
 
 const CardContainer = style("section")(
   cascading(
@@ -83,43 +100,33 @@ const ClickZone = style("a")({
 });
 
 export const Cards = ({ children }) => {
-  const [started, setStarted] = useState(false);
-  const [realStarted, setRealStarted] = useState(false);
-  const [previous, setPrevious] = useState(null);
+  const scrollRef = useRef();
+  const [showArrows, setShowArrows] = useState([false, true]);
 
-  const onMouseDown = event => {
-    setStarted(true);
-    setPrevious(event);
-  };
-
-  const onMouseMove = event => {
-    if (started) {
-      const container = event.target.closest("article");
-      const move = previous.x - event.x;
-      if (realStarted || Math.abs(move) > 2) {
-        container.scrollLeft += move;
-        setPrevious(event);
-        setRealStarted(true);
-      }
-    }
-  };
-
-  const onClick = event => {
-    if (realStarted) {
-      event.preventDefault();
-    }
-    setStarted(false);
-    setRealStarted(false);
+  const scroll = direction => () => {
+    scrollRef.current.base.scrollBy({
+      left: direction * 400,
+      behavior: "smooth"
+    });
+    setTimeout(() => {
+      const element = scrollRef.current.base;
+      const scrollValue = element.scrollLeft;
+      const maxScrollLeft = element.scrollWidth - element.clientWidth;
+      setShowArrows([scrollValue > 0, scrollValue < maxScrollLeft]);
+    }, 500);
   };
 
   return html`
-    <${CardsContainer}
-      onMouseDown=${onMouseDown}
-      onMouseMove=${onMouseMove}
-      onClick=${onClick}
-      onMouseOut=${onClick}
-    >
-      ${children}
+    <${CardsContainer}>
+      <${Arrow} onClick=${scroll(-1)} show=${showArrows[0]}>
+        ${"<"}
+      <//>
+      <${CardsScroll} ref=${scrollRef}>
+        ${children}
+      <//>
+      <${Arrow} onClick=${scroll(1)} show=${showArrows[1]}>
+        ${">"}
+      <//>
     <//>
   `;
 };

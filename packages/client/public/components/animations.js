@@ -30,3 +30,13 @@ export const bounceInRight = keyframes({
     transform: "translate3d(0, 0, 0)"
   }
 });
+
+export const spin = keyframes({
+  "80%": {
+    transform: "rotate(400deg)"
+  },
+
+  to: {
+    transform: "rotate(360deg)"
+  }
+});
