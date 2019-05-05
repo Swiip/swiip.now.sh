@@ -23,7 +23,12 @@ const Blog = () => {
       ${items.map(
         item =>
           html`
-            <${Card} title=${item.title} />
+            <${Card}
+              title=${item.title}
+              image=${item.image}
+              link=${item.link}
+              description=${item.keywords.join(", ")}
+            />
           `
       )}
     <//>
