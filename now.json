@@ -4,7 +4,7 @@
   "public": true,
   "alias": "swiip.now.sh",
   "routes": [
-    { "src": "/api/(.*)", "dest": "packages/server/$1" },
+    { "src": "/api/(.*)", "dest": "packages/server/$1.js" },
     {
       "src": "/",
       "dest": "/packages/client/index.html",
@@ -13,7 +13,7 @@
     { "src": "/(?!api)(.+)", "dest": "/packages/client/$1" }
   ],
   "builds": [
-    { "src": "packages/server/index.js", "use": "@now/node" },
+    { "src": "packages/server/*.js", "use": "@now/node" },
     { "src": "packages/client/package.json", "use": "@now/static-build" }
   ]
 }

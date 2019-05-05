@@ -4,6 +4,9 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
-    "express": "^4.16.4"
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.16.4",
+    "node-fetch": "^2.5.0",
+    "xml2js": "^0.4.19"
   }
 }
