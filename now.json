@@ -4,7 +4,8 @@
   "public": true,
   "alias": "swiip.now.sh",
   "env": {
-    "GITHUB_API_TOKEN": "@github-api-token"
+    "GITHUB_API_TOKEN": "@github-api-token",
+    "CONTENTFUL_API_TOKEN": "@contentful-api-token"
   },
   "routes": [
     { "src": "/api/(.*)", "dest": "packages/server/$1.js" },

@@ -10,9 +10,10 @@ import {
 } from "/components/animations.js";
 
 const CardsContainer = style("article")({
+  height: "100%",
+  width: "100%",
   display: "flex",
   flexDirection: "row",
-  height: "100%",
   overflow: "hidden"
 });
 

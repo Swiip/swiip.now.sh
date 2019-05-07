@@ -8,6 +8,7 @@ const Main = style("main")({
   height: "100%",
   flex: "1",
   display: "flex",
+  flexDirection: "column",
   justifyContent: "center",
   alignItems: "center"
 });
@@ -35,6 +36,12 @@ const MainComponent = ({ content }) => {
         : html`
             <${Content} type=${type} exiting=${exiting} />
           `}
+      ${type === "medium" &&
+        html`
+          <a href="https://medium.com/@Swiip_51904" target="_blank">
+            Powered by Medium (@Swiip_51904)
+          </a>
+        `}
     <//>
   `;
 };
