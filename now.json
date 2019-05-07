@@ -3,6 +3,9 @@
   "name": "swiip",
   "public": true,
   "alias": "swiip.now.sh",
+  "env": {
+    "GITHUB_API_TOKEN": "@github-api-token"
+  },
   "routes": [
     { "src": "/api/(.*)", "dest": "packages/server/$1.js" },
     {

@@ -65,10 +65,10 @@ const HeaderComponent = ({ setContent }) => html`
     <${Nav}>
       <${NavItems}>
         <${NavItem}>
-          <${NavButton} onClick=${() => setContent("blog")}>Blog<//>
+          <${NavButton} onClick=${() => setContent("medium")}>Blog<//>
         <//>
         <${NavItem}>
-          <${NavButton} onClick=${() => setContent("code")}>Code<//>
+          <${NavButton} onClick=${() => setContent("github")}>Code<//>
         <//>
         <${NavItem}>
           <${NavButton} onClick=${() => setContent("jobs")}>Jobs<//>

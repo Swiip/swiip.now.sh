@@ -23,7 +23,7 @@ app.get("*", async (req, res) => {
   const itemsPromises = rssItems.map(async rssItem => ({
     title: rssItem.title[0],
     link: rssItem.link[0],
-    keywords: rssItem.category,
+    description: rssItem.category.join(", "),
     date: rssItem.pubDate[0],
     image: getImage(rssItem["content:encoded"][0])
   }));

@@ -1,7 +1,7 @@
 import html from "/html.js";
 import style from "/style.js";
 
-import { cascading, bounceInRight } from "/components/animations.js";
+import { cascading, bounceInRight, outLeft } from "/components/animations.js";
 
 const Container = style("article")({
   display: "flex",
@@ -10,24 +10,24 @@ const Container = style("article")({
   alignItems: "center"
 });
 
-const Line = style("h2")(
+const Line = style("h2")(({ exiting }) =>
   cascading(
     {
       fontSize: "35px",
       fontWeight: "normal",
       margin: "10px 0",
       opacity: "0",
-      animation: `${bounceInRight} .3s forwards`
+      animation: exiting ? `${outLeft} .3s` : `${bounceInRight} .3s forwards`
     },
-    3
+    exiting ? 0 : 3
   )
 );
 
-const Home = () => html`
+const Home = ({ exiting }) => html`
   <${Container}>
-    <${Line}>Web Developer.<//>
-    <${Line}>Trainer.<//>
-    <${Line}>Speaker.<//>
+    <${Line} exiting=${exiting}>Web Developer.<//>
+    <${Line} exiting=${exiting}>Trainer.<//>
+    <${Line} exiting=${exiting}>Speaker.<//>
   <//>
 `;
 

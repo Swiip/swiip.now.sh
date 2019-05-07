@@ -3,20 +3,15 @@ import { useState, useEffect } from "/imports/preact/hooks.js";
 
 import { Cards, Card } from "/components/cards.js";
 
-const Blog = () => {
+const Content = ({ type, exiting }) => {
   const [items, setItems] = useState([]);
 
   useEffect(async () => {
-    const itemsRequest = await fetch("/api/medium");
+    setItems([]);
+    const itemsRequest = await fetch(`/api/${type}`);
     const itemsServer = await itemsRequest.json();
     setItems(itemsServer);
-  }, []);
-
-  if (items.length === 0) {
-    return html`
-      Loading...
-    `;
-  }
+  }, [type]);
 
   return html`
     <${Cards}>
@@ -27,7 +22,8 @@ const Blog = () => {
               title=${item.title}
               image=${item.image}
               link=${item.link}
-              description=${item.keywords.join(", ")}
+              description=${item.description}
+              exiting=${exiting}
             />
           `
       )}
@@ -35,4 +31,4 @@ const Blog = () => {
   `;
 };
 
-export default Blog;
+export default Content;

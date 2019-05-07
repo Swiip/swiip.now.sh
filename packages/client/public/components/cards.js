@@ -2,7 +2,12 @@ import html from "/html.js";
 import style from "/style.js";
 import { useState, useRef } from "/imports/preact/hooks.js";
 
-import { cascading, bounceInRight, spin } from "/components/animations.js";
+import {
+  cascading,
+  bounceInRight,
+  outLeft,
+  spin
+} from "/components/animations.js";
 
 const CardsContainer = style("article")({
   display: "flex",
@@ -28,7 +33,7 @@ const Arrow = style("button")(({ show }) => ({
   }
 }));
 
-const CardContainer = style("section")(
+const CardContainer = style("section")(({ exiting }) =>
   cascading(
     {
       display: "flex",
@@ -36,7 +41,9 @@ const CardContainer = style("section")(
       justifyContent: "center",
       alignItems: "center",
       opacity: "0",
-      animation: `${bounceInRight} .3s forwards`,
+      animation: exiting
+        ? `${outLeft} .3s forwards`
+        : `${bounceInRight} .3s forwards`,
       height: "100%",
       flex: "0 0 300px"
     },
@@ -104,12 +111,12 @@ export const Cards = ({ children }) => {
   const [showArrows, setShowArrows] = useState([false, true]);
 
   const scroll = direction => () => {
-    scrollRef.current.base.scrollBy({
-      left: direction * 400,
+    const element = scrollRef.current.base;
+    element.scrollBy({
+      left: (direction * element.clientWidth * 80) / 100,
       behavior: "smooth"
     });
     setTimeout(() => {
-      const element = scrollRef.current.base;
       const scrollValue = element.scrollLeft;
       const maxScrollLeft = element.scrollWidth - element.clientWidth;
       setShowArrows([scrollValue > 0, scrollValue < maxScrollLeft]);
@@ -131,8 +138,8 @@ export const Cards = ({ children }) => {
   `;
 };
 
-export const Card = ({ title, image, link, description }) => html`
-  <${CardContainer}>
+export const Card = ({ title, image, link, description, exiting }) => html`
+  <${CardContainer} exiting=${exiting}>
     <${ClickZone} href=${link} target="_blank" draggable=${false}>
       <${ImageContainer}>
         <${ImageBox}>

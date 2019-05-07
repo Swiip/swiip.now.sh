@@ -1,6 +1,8 @@
 import html from "/html.js";
 import style from "/style.js";
-import { useState } from "/imports/preact/hooks.js";
+import { useState, useEffect } from "/imports/preact/hooks.js";
+import Home from "/components/home.js";
+import Content from "/components/content.js";
 
 const Main = style("main")({
   height: "100%",
@@ -10,29 +12,29 @@ const Main = style("main")({
   alignItems: "center"
 });
 
-const Loading = () =>
-  html`
-    Loading...
-  `;
-
 const MainComponent = ({ content }) => {
-  const [cache, setCache] = useState({});
+  const [type, setType] = useState("home");
+  const [exiting, setExiting] = useState(false);
 
-  let Component = Loading;
-
-  if (!cache[content]) {
-    const load = async () => {
-      const module = await import(`/components/${content}.js`);
-      setCache({ ...cache, [content]: module.default });
-    };
-    setCache({ ...cache, [content]: load() });
-  } else if (!cache[content].then) {
-    Component = cache[content];
-  }
+  useEffect(() => {
+    if (content !== type) {
+      setExiting(true);
+      setTimeout(() => {
+        setType(content);
+        setExiting(false);
+      }, 500);
+    }
+  }, [content]);
 
   return html`
     <${Main}>
-      <${Component} />
+      ${type === "home"
+        ? html`
+            <${Home} exiting=${exiting} />
+          `
+        : html`
+            <${Content} type=${type} exiting=${exiting} />
+          `}
     <//>
   `;
 };

@@ -31,6 +31,18 @@ export const bounceInRight = keyframes({
   }
 });
 
+export const outLeft = keyframes({
+  from: {
+    opacity: "1",
+    transform: "translate3d(0, 0, 0)"
+  },
+
+  to: {
+    opacity: "0",
+    transform: "translate3d(-300px, 0, 0)"
+  }
+});
+
 export const spin = keyframes({
   "80%": {
     transform: "rotate(400deg)"
