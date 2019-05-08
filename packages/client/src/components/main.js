@@ -1,8 +1,10 @@
-import html from "/html.js";
-import style from "/style.js";
-import { useState, useEffect } from "/imports/preact/hooks.js";
-import Home from "/components/home.js";
-import Content from "/components/content.js";
+import { useState, useEffect } from "preact/hooks";
+
+import html from "../html";
+import style from "../style";
+
+import Home from "./home";
+import Content from "./content";
 
 const Main = style("main")({
   height: "100%",

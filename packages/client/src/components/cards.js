@@ -1,13 +1,9 @@
-import html from "/html.js";
-import style from "/style.js";
-import { useState, useRef } from "/imports/preact/hooks.js";
+import { useState, useRef } from "preact/hooks";
 
-import {
-  cascading,
-  bounceInRight,
-  outLeft,
-  spin
-} from "/components/animations.js";
+import html from "../html";
+import style from "../style";
+
+import { cascading, bounceInRight, outLeft, spin } from "./animations";
 
 const CardsContainer = style("article")({
   height: "100%",

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "/imports/preact/hooks.js";
-import html from "/html.js";
-import style from "/style.js";
+import { useEffect, useState } from "preact/hooks";
+import html from "../html";
+import style from "../style";
 
 const Background = style("div")(({ mousePosition = { x: 0, y: 0 } }) => ({
   height: "100%",

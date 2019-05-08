@@ -1,5 +1,5 @@
-import html from "/html.js";
-import style from "/style.js";
+import html from "../html";
+import style from "../style";
 
 const Header = style("header")({
   display: "flex",

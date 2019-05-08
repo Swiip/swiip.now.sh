@@ -1,8 +1,12 @@
 {
   "name": "swiip.now.sh-client",
   "version": "1.0.0",
+  "source": "src/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "scripts": {
-    "now-build": "node ../build"
+    "bundle": "microbundle --external=all --format=es",
+    "now-build": "node ../build && microbundle --external=all --format=es"
   },
   "license": "MIT",
   "private": true,
@@ -11,10 +15,7 @@
     "picostyle": "^2.2.0",
     "preact": "^10.0.0-beta.1"
   },
-  "imports": {
-    "preact": "/node_modules/preact/dist/preact.module.js",
-    "preact/hooks": "/node_modules/preact/hooks/dist/hooks.module.js",
-    "htm": "/node_modules/htm/dist/htm.mjs",
-    "picostyle": "/node_modules/picostyle/src/index.js"
+  "devDependencies": {
+    "microbundle": "^0.11.0"
   }
 }

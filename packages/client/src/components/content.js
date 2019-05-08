@@ -1,7 +1,7 @@
-import html from "/html.js";
-import { useState, useEffect } from "/imports/preact/hooks.js";
+import { useState, useEffect } from "preact/hooks";
+import html from "../html";
 
-import { Cards, Card } from "/components/cards.js";
+import { Cards, Card } from "./cards";
 
 const Content = ({ type, exiting }) => {
   const [items, setItems] = useState([]);

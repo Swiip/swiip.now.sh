@@ -11,8 +11,7 @@
     { "src": "/api/(.*)", "dest": "packages/server/$1.js" },
     {
       "src": "/",
-      "dest": "/packages/client/index.html",
-      "headers": { "Link": "</index.js>; rel=preload; as=script, </index.css>; as=style; rel=preload" }
+      "dest": "/packages/client/index.html"
     },
     { "src": "/(?!api)(.+)", "dest": "/packages/client/$1" }
   ],

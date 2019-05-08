@@ -1,10 +1,10 @@
-import { render } from "/imports/preact.js";
-import html from "/html.js";
-import { useState } from "/imports/preact/hooks.js";
+import { render } from "preact";
+import { useState } from "preact/hooks";
+import html from "./html";
 
-import Background from "/components/background.js";
-import Header from "/components/header.js";
-import Main from "/components/main.js";
+import Background from "./components/background";
+import Header from "./components/header";
+import Main from "./components/main";
 
 const App = () => {
   const [content, setContent] = useState("home");

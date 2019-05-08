@@ -1,7 +1,7 @@
-import html from "/html.js";
-import style from "/style.js";
+import html from "../html";
+import style from "../style";
 
-import { cascading, bounceInRight, outLeft } from "/components/animations.js";
+import { cascading, bounceInRight, outLeft } from "./animations";
 
 const Container = style("article")({
   display: "flex",

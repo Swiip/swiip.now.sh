@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import { keyframes } from "/style.js";
+import { keyframes } from "../style";
 
 const cascadingDepth = 5;
 
