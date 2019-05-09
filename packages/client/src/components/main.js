@@ -15,6 +15,10 @@ const Main = style("main")({
   alignItems: "center"
 });
 
+const Powered = style("a")({
+  margin: "10px"
+});
+
 const MainComponent = ({ content }) => {
   const [type, setType] = useState("home");
   const [exiting, setExiting] = useState(false);
@@ -40,9 +44,9 @@ const MainComponent = ({ content }) => {
           `}
       ${type === "medium" &&
         html`
-          <a href="https://medium.com/@Swiip_51904" target="_blank">
+          <${Powered} href="https://medium.com/@Swiip_51904" target="_blank">
             Powered by Medium (@Swiip_51904)
-          </a>
+          <//>
         `}
     <//>
   `;

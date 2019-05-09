@@ -5,12 +5,12 @@ import { keyframes } from "../style";
 const cascadingDepth = 5;
 
 export const cascading = (style, offset) => {
-  style.animationDelay = `.${offset + cascadingDepth}s`;
-  [...Array(cascadingDepth)].forEach((_, i) => {
+  for (let i = 0; i < cascadingDepth; i += 1) {
     style[`:nth-child(${i + 1})`] = {
       animationDelay: `.${offset + i}s`
     };
-  });
+  }
+  style.animationDelay = `.${offset + cascadingDepth}s`;
   return style;
 };
 
