@@ -4,13 +4,16 @@ import { keyframes } from "../style";
 
 const cascadingDepth = 5;
 
-export const cascading = (style, offset) => {
+export const cascading = (style, offset, prefix = "&") => {
   for (let i = 0; i < cascadingDepth; i += 1) {
-    style[`:nth-child(${i + 1})`] = {
+    style[`${prefix}:nth-child(${i + 1})`] = {
       animationDelay: `.${offset + i}s`
     };
   }
-  style.animationDelay = `.${offset + cascadingDepth}s`;
+  if (!style.prefix) {
+    style.prefix = {};
+  }
+  style.prefix.animationDelay = `.${offset + cascadingDepth}s`;
   return style;
 };
 

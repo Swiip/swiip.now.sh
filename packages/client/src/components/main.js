@@ -4,6 +4,7 @@ import html from "../html";
 import style from "../style";
 
 import Home from "./home";
+import About from "./about";
 import Content from "./content";
 
 const Main = style("main")({
@@ -31,8 +32,8 @@ const powereds = {
     text: "Powered by GitHub data (@Swiip)"
   },
   jobs: {
-    link: "https://www.contentful.com/",
-    text: "Powered by Contentful"
+    link: "https://www.linkedin.com/in/swiip/",
+    text: "Powered by Contentful, more on LinkedIn"
   },
   talks: {
     link: "https://www.contentful.com/",
@@ -60,13 +61,19 @@ const MainComponent = ({ content }) => {
 
   return html`
     <${Main}>
-      ${type === "home"
-        ? html`
-            <${Home} exiting=${exiting} />
-          `
-        : html`
-            <${Content} type=${type} exiting=${exiting} />
-          `}
+      ${type === "home" &&
+        html`
+          <${Home} exiting=${exiting} />
+        `}
+      ${type === "about" &&
+        html`
+          <${About} exiting=${exiting} />
+        `}
+      ${type !== "home" &&
+        type !== "about" &&
+        html`
+          <${Content} type=${type} exiting=${exiting} />
+        `}
       <${Powered}
         show=${powereds[type] && !exiting}
         href=${powereds[type] && powereds[type].link}
