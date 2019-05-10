@@ -6,6 +6,7 @@ import { cascading, bounceInRight, outLeft } from "./animations";
 const CardContainer = style("section")(({ exiting }) =>
   cascading(
     {
+      width: "300px",
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",

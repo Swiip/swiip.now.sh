@@ -15,6 +15,8 @@ const Line = style("h2")(({ exiting }) =>
     {
       fontSize: "35px",
       fontWeight: "normal",
+      textAlign: "center",
+      whiteSpace: "nowrap",
       margin: "10px 0",
       opacity: "0",
       animation: exiting ? `${outLeft} .3s` : `${bounceInRight} .3s forwards`

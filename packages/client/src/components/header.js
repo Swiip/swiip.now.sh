@@ -1,15 +1,21 @@
 import html from "../html";
-import style from "../style";
+import style, { mediaSmall } from "../style";
 
 const Header = style("header")({
   display: "flex",
-  flexDirection: "row"
+  flexDirection: "row",
+  [mediaSmall]: {
+    flexDirection: "column"
+  }
 });
 
 const Title = style("h1")({
   flex: "1",
   ":hover button": {
     textShadow: "0px 0px 4px white"
+  },
+  [mediaSmall]: {
+    textAlign: "center"
   }
 });
 
@@ -17,7 +23,11 @@ const TitleButton = style("button")({
   fontSize: "40px",
   fontWeight: "normal",
   whiteSpace: "nowrap",
-  transition: "text-shadow .3s"
+  transition: "text-shadow .3s",
+  [mediaSmall]: {
+    fontSize: "35px",
+    whiteSpace: "normal"
+  }
 });
 
 const Nav = style("nav")({
@@ -33,7 +43,8 @@ const NavItems = style("ul")({
   padding: "0",
   margin: "0",
   display: "flex",
-  justifyContent: "space-around"
+  justifyContent: "space-around",
+  flexWrap: "wrap"
 });
 
 const NavItem = style("li")({
@@ -51,7 +62,7 @@ const NavItem = style("li")({
 });
 
 const NavButton = style("button")({
-  padding: "10px 20px",
+  padding: "10px",
   lineHeight: "30px"
 });
 

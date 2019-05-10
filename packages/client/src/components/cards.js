@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "preact/hooks";
 
 import html from "../html";
-import style from "../style";
+import style, { mediaSmall } from "../style";
 
 import { spin } from "./animations";
 
@@ -18,7 +18,12 @@ const CardsScroll = style("div")({
   height: "100%",
   display: "flex",
   flexDirection: "row",
-  overflow: "hidden"
+  alignItems: "center",
+  overflow: "hidden",
+  [mediaSmall]: {
+    height: "auto",
+    flexDirection: "column"
+  }
 });
 
 const Arrow = style("button")(({ show }) => ({
@@ -28,6 +33,9 @@ const Arrow = style("button")(({ show }) => ({
   opacity: show ? "1" : "0",
   ":hover": {
     animation: `${spin} 1s`
+  },
+  [mediaSmall]: {
+    display: "none"
   }
 }));
 

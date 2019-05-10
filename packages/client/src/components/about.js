@@ -1,5 +1,5 @@
 import html from "../html";
-import style from "../style";
+import style, { mediaSmall } from "../style";
 
 import { cascading, bounceInRight, outLeft } from "./animations";
 
@@ -13,6 +13,9 @@ const Container = style("article")(({ exiting }) =>
       alignItems: "start",
       "& > *": {
         animation: exiting ? `${outLeft} .3s` : `${bounceInRight} .3s forwards`
+      },
+      [mediaSmall]: {
+        width: "90%"
       }
     },
     exiting ? 0 : 3,
@@ -31,6 +34,7 @@ const Line = style("p")({
   fontSize: "20px",
   margin: "10px 0",
   opacity: "0",
+  wordBreak: "break-word",
   "& a": {
     textDecoration: "underline"
   }
