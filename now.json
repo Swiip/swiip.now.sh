@@ -5,7 +5,11 @@
   "alias": "swiip.now.sh",
   "env": {
     "GITHUB_API_TOKEN": "@github-api-token",
-    "CONTENTFUL_API_TOKEN": "@contentful-api-token"
+    "CONTENTFUL_API_TOKEN": "@contentful-api-token",
+    "TWITTER_CONSUMER_KEY": "@twitter-consumer-key",
+    "TWITTER_CONSUMER_SECRET": "@twitter-consumer-secret",
+    "TWITTER_ACCESS_TOKEN": "@twitter-access-token",
+    "TWITTER_ACCESS_TOKEN_SECRET": "@twitter-access-token-secret"
   },
   "routes": [
     { "src": "/api/(.*)", "dest": "packages/server/$1.js" },

@@ -74,7 +74,10 @@ const HeaderComponent = ({ setContent }) => html`
           <${NavButton} onClick=${() => setContent("jobs")}>Jobs<//>
         <//>
         <${NavItem}>
-          <${NavButton} onClick=${() => setContent("news")}>News<//>
+          <${NavButton} onClick=${() => setContent("talks")}>Talks<//>
+        <//>
+        <${NavItem}>
+          <${NavButton} onClick=${() => setContent("twitter")}>News<//>
         <//>
         <${NavItem}>
           <${NavButton} onClick=${() => setContent("about")}>About<//>

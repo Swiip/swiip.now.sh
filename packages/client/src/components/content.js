@@ -1,7 +1,8 @@
 import { useState, useEffect } from "preact/hooks";
 import html from "../html";
 
-import { Cards, Card } from "./cards";
+import Cards from "./cards";
+import Card from "./card";
 
 const Content = ({ type, exiting }) => {
   const [items, setItems] = useState([]);
@@ -14,7 +15,7 @@ const Content = ({ type, exiting }) => {
   }, [type]);
 
   return html`
-    <${Cards}>
+    <${Cards} loaded=${items.length > 0}>
       ${items.map(
         item =>
           html`

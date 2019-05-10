@@ -1,9 +1,9 @@
-import { useState, useRef } from "preact/hooks";
+import { useState, useRef, useEffect } from "preact/hooks";
 
 import html from "../html";
 import style from "../style";
 
-import { cascading, bounceInRight, outLeft, spin } from "./animations";
+import { spin } from "./animations";
 
 const CardsContainer = style("article")({
   height: "100%",
@@ -31,82 +31,22 @@ const Arrow = style("button")(({ show }) => ({
   }
 }));
 
-const CardContainer = style("section")(({ exiting }) =>
-  cascading(
-    {
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      opacity: "0",
-      animation: exiting
-        ? `${outLeft} .3s forwards`
-        : `${bounceInRight} .3s forwards`,
-      height: "100%",
-      flex: "0 0 300px"
-    },
-    0
-  )
-);
-
-const ImageContainer = style("div")({
-  padding: "20px",
-  width: "300px",
-  height: "200px"
-});
-
-const ImageBox = style("div")({
-  width: "100%",
-  height: "100%",
-  overflow: "hidden"
-});
-
-const Image = style("img")({
-  width: "100%",
-  height: "100%",
-  objectFit: "cover",
-  transition: "transform .3s"
-});
-
-const Break = style("hr")({
-  width: "95%",
-  opacity: ".3",
-  transition: "opacity .3s"
-});
-
-const Title = style("h3")({
-  padding: "20px",
-  margin: "0",
-  height: "100px",
-  fontWeight: "normal",
-  textAlign: "center",
-  transition: "transform .3s"
-});
-
-const Description = style("p")({
-  padding: "20px",
-  margin: "0",
-  height: "100px",
-  fontSize: "16px",
-  opacity: "0.5"
-});
-
-const ClickZone = style("a")({
-  margin: "0",
-  ":hover img": {
-    transform: "scale(1.2)"
-  },
-  ":hover hr": {
-    opacity: "1"
-  },
-  ":hover h3": {
-    transform: "scale(1.2)"
-  }
-});
-
-export const Cards = ({ children }) => {
+const Cards = ({ children, loaded }) => {
   const scrollRef = useRef();
-  const [showArrows, setShowArrows] = useState([false, true]);
+  const [showArrows, setShowArrows] = useState([false, false]);
+
+  const getArrows = () => {
+    const element = scrollRef.current.base;
+    const scrollValue = element.scrollLeft;
+    const maxScrollLeft = element.scrollWidth - element.clientWidth;
+    return [scrollValue > 0, scrollValue < maxScrollLeft];
+  };
+
+  useEffect(() => {
+    if (loaded === true) {
+      setShowArrows(getArrows());
+    }
+  }, [loaded]);
 
   const scroll = direction => () => {
     const element = scrollRef.current.base;
@@ -114,39 +54,22 @@ export const Cards = ({ children }) => {
       left: (direction * element.clientWidth * 80) / 100,
       behavior: "smooth"
     });
-    setTimeout(() => {
-      const scrollValue = element.scrollLeft;
-      const maxScrollLeft = element.scrollWidth - element.clientWidth;
-      setShowArrows([scrollValue > 0, scrollValue < maxScrollLeft]);
-    }, 500);
+    setTimeout(() => setShowArrows(getArrows()), 500);
   };
 
   return html`
     <${CardsContainer}>
-      <${Arrow} onClick=${scroll(-1)} show=${showArrows[0]}>
+      <${Arrow} onClick=${scroll(-1)} show=${loaded && showArrows[0]}>
         ${"<"}
       <//>
       <${CardsScroll} ref=${scrollRef}>
         ${children}
       <//>
-      <${Arrow} onClick=${scroll(1)} show=${showArrows[1]}>
+      <${Arrow} onClick=${scroll(1)} show=${loaded && showArrows[1]}>
         ${">"}
       <//>
     <//>
   `;
 };
 
-export const Card = ({ title, image, link, description, exiting }) => html`
-  <${CardContainer} exiting=${exiting}>
-    <${ClickZone} href=${link} target="_blank" draggable=${false}>
-      <${ImageContainer}>
-        <${ImageBox}>
-          <${Image} src=${image} alt=${title} draggable=${false} />
-        <//>
-      <//>
-      <${Break} />
-      <${Title} draggable=${false}>${title}<//>
-      <${Description} draggable=${false}>${description}<//>
-    <//>
-  <//>
-`;
+export default Cards;

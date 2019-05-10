@@ -15,9 +15,34 @@ const Main = style("main")({
   alignItems: "center"
 });
 
-const Powered = style("a")({
-  margin: "10px"
-});
+const Powered = style("a")(({ show }) => ({
+  margin: "10px",
+  opacity: show ? "1" : "0",
+  transition: "opacity .5s"
+}));
+
+const powereds = {
+  medium: {
+    link: "https://medium.com/@Swiip_51904",
+    text: "Powered by Medium data (@Swiip_51904)"
+  },
+  github: {
+    link: "https://github.com/Swiip",
+    text: "Powered by GitHub data (@Swiip)"
+  },
+  jobs: {
+    link: "https://www.contentful.com/",
+    text: "Powered by Contentful"
+  },
+  talks: {
+    link: "https://www.contentful.com/",
+    text: "Powered by Contentful"
+  },
+  twitter: {
+    link: "https://twitter.com/Swiip",
+    text: "Powered by Twitter data (@Swiip)"
+  }
+};
 
 const MainComponent = ({ content }) => {
   const [type, setType] = useState("home");
@@ -42,12 +67,13 @@ const MainComponent = ({ content }) => {
         : html`
             <${Content} type=${type} exiting=${exiting} />
           `}
-      ${type === "medium" &&
-        html`
-          <${Powered} href="https://medium.com/@Swiip_51904" target="_blank">
-            Powered by Medium (@Swiip_51904)
-          <//>
-        `}
+      <${Powered}
+        show=${powereds[type] && !exiting}
+        href=${powereds[type] && powereds[type].link}
+        target="_blank"
+      >
+        ${powereds[type] && powereds[type].text}
+      <//>
     <//>
   `;
 };
